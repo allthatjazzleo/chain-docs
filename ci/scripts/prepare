@@ -5,6 +5,7 @@ if [ "${EVENT}" == "push" ]
 then
   BRANCH="MASTER"
 elif [ "${EVENT}" == "issue_comment" ]
+then
   BRANCH="STAGING"
 fi
 
