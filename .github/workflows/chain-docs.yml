@@ -40,6 +40,12 @@ jobs:
         cat test
         BRANCH=$(echo ${GITHUB_REF##*/} | tr '[:lower:]' '[:upper:]')
         echo $BRANCH
+        echo 
+    - name: test2
+      env:
+        EVENT: ${{ github.event_name }}
+      run: |
+        echo $EVENT event triggered this step
     # - name: Check out code
     #   uses: actions/checkout@v2
     # - uses: actions/setup-node@v1
