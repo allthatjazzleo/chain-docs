@@ -2,7 +2,7 @@
 set -e
 
 BRANCH=$(echo ${GITHUB_REF##*/} | tr '[:lower:]' '[:upper:]')
-if [ "${BRANCH}" == "DEV" ]
+if [ "${BRANCH}" == "STAGING" ]
 then
   BRANCH="STAGING"
 fi

@@ -2,7 +2,7 @@ name: chain-docs
 
 on:
   push:
-    branches: [ dev , master ]
+    branches: [ master ]
     paths:
     - 'docs/**'
     - 'ci/**'
@@ -14,7 +14,7 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    if: github.event.comment.body == '/RUN' && github.actor == 'allthatjazzleo' || github.actor == 'tomtau' 
+    if: github.event.comment.body == '/RUN' && github.actor == 'allthatjazzleo' || github.actor == 'tomtau' || github.actor == 'lezzokafka' || github.actor == 'yihuang' || github.actor == 'calvinlauco' || github.actor == 'foreseaz' || github.actor == 'CeruleanAtMonaco' || github.actor == 'devashishdxt' || github.actor == 'leejw51crypto'
     steps:
     - name: Github API Request
       id: request
@@ -37,6 +37,8 @@ jobs:
     - name: test
       run: |
         cat test
+        BRANCH=$(echo ${GITHUB_REF##*/} | tr '[:lower:]' '[:upper:]')
+        echo $BRANCH
     # - name: Check out code
     #   uses: actions/checkout@v2
     # - uses: actions/setup-node@v1
@@ -44,11 +46,12 @@ jobs:
     #     node-version: '12'
     # - name: ci
     #   env:
-    #     MASTER_AWS_ACCESS_KEY_ID: ${{ secrets.MASTER_AWS_ACCESS_KEY_ID }}
-    #     MASTER_AWS_SECRET_ACCESS_KEY: ${{ secrets.MASTER_AWS_SECRET_ACCESS_KEY }}
-    #     MASTER_BUCKET_NAME: ${{ secrets.MASTER_BUCKET_NAME }}
-    #     MASTER_CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.MASTER_CLOUDFRONT_DISTRIBUTION_ID }}
-    #     MASTER_REGION: ${{ secrets.MASTER_REGION }}
+    #     # MASTER_AWS_ACCESS_KEY_ID: ${{ secrets.MASTER_AWS_ACCESS_KEY_ID }}
+    #     # MASTER_AWS_SECRET_ACCESS_KEY: ${{ secrets.MASTER_AWS_SECRET_ACCESS_KEY }}
+    #     # MASTER_BUCKET_NAME: ${{ secrets.MASTER_BUCKET_NAME }}
+    #     # MASTER_CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.MASTER_CLOUDFRONT_DISTRIBUTION_ID }}
+    #     # MASTER_REGION: ${{ secrets.MASTER_REGION }}
+    #     BRANCH: STAGING
     #     STAGING_AWS_ACCESS_KEY_ID: ${{ secrets.STAGING_AWS_ACCESS_KEY_ID }}
     #     STAGING_AWS_SECRET_ACCESS_KEY: ${{ secrets.STAGING_AWS_SECRET_ACCESS_KEY }}
     #     STAGING_BUCKET_NAME: ${{ secrets.STAGING_BUCKET_NAME }}
