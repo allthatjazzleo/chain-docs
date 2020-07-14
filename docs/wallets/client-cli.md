@@ -11,7 +11,7 @@ ClientCLI is a command line interface for the wallet client. It supports wallet 
 ### Build instructions
 
 ClientCLI is bundled with the Crypto.com chain code. After you have [compile the binaries](https://crypto-com.github.io/getting-started/#compile-chain), it is available under `./bin/client-cli`.
-
+sada
 ### How to use
 
 ```bash
