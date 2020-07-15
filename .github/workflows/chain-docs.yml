@@ -4,6 +4,7 @@ on:
   push:
     branches: [ master ]
     paths:
+    - 'test'
     - 'docs/**'
     - 'ci/**'
     - '!README.md'
@@ -45,33 +46,8 @@ jobs:
         node-version: '12'
     - name: ci
       env:
-        MASTER_AWS_ACCESS_KEY_ID: ${{ secrets.MASTER_AWS_ACCESS_KEY_ID }}
-        MASTER_AWS_SECRET_ACCESS_KEY: ${{ secrets.MASTER_AWS_SECRET_ACCESS_KEY }}
-        MASTER_BUCKET_NAME: ${{ secrets.MASTER_BUCKET_NAME }}
-        MASTER_CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.MASTER_CLOUDFRONT_DISTRIBUTION_ID }}
-        MASTER_REGION: ${{ secrets.MASTER_REGION }}
         EVENT: ${{ github.event_name }}
-        STAGING_AWS_ACCESS_KEY_ID: ${{ secrets.STAGING_AWS_ACCESS_KEY_ID }}
-        STAGING_AWS_SECRET_ACCESS_KEY: ${{ secrets.STAGING_AWS_SECRET_ACCESS_KEY }}
-        STAGING_BUCKET_NAME: ${{ secrets.STAGING_BUCKET_NAME }}
-        STAGING_CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.STAGING_CLOUDFRONT_DISTRIBUTION_ID }}
-        STAGING_REGION: ${{ secrets.STAGING_REGION }}
       run: |
-        . ci/scripts/prepare
-        ci/scripts/build
-        ci/scripts/deploy
-    - name: Perform ShiftLeft Scan
-      uses: ShiftLeftSecurity/scan-action@master
-      env:
-        WORKSPACE: ""
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SCAN_AUTO_BUILD: true
-      with:
-        output: reports
-        # Scan auto-detects the languages in your project. To override uncomment the below variable and set the type
-        # type: credscan,java
-        # type: python
-    - name: Upload report
-      uses: github/codeql-action/upload-sarif@v1
-      with:
-        sarif_file: reports
+        echo this event is triggered by $EVENT
+        echo "\ncat test"
+        cat test
