@@ -49,5 +49,5 @@ jobs:
         EVENT: ${{ github.event_name }}
       run: |
         echo this event is triggered by $EVENT
-        echo "\ncat test"
+        echo -e "\ncat test"
         cat test
